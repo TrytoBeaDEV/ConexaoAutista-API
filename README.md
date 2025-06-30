@@ -1,4 +1,4 @@
-  # 🤝 Conexão Autista - Aplicativo de Apoio para o TEA 💙
+# 🤝 Conexão Autista - Aplicativo de Apoio para o TEA 💙
 > API RESTful desenvolvida com **Spring Boot** com foco na organização da rotina de pessoas com Transtorno do Espectro Autista (TEA), promovendo autonomia, inclusão e suporte aos responsáveis, profissionais e educadores.
 
 ## 📌 Visão Geral
@@ -9,8 +9,8 @@ O projeto **Conexão Autista** tem como objetivo principal oferecer um sistema h
 - 📅 Organizar compromissos e sessões com terapeutas
 - 👩‍⚕️ Localizar profissionais especializados
 - 📊 Compartilhar dados com médicos, terapeutas e educadores
-
-Essa API representa o backend desse sistema.
+  
+Essa API representa uma parte do backend desse sistema.
 
 ## 🚀 Tecnologias Utilizadas
 - 💻 **Java 17**
@@ -21,60 +21,107 @@ Essa API representa o backend desse sistema.
 - ☕ **Maven** como gerenciador de dependências
 - 🐙 **GitHub** para versionamento
 
-## 📦 Instalação Local
-1. **Clone o repositório**:
-```bash
+## 📦**Instruções de como rodar a API:**
+
+### **1. Clone o repositório:**
+```
+git clone https://github.com/TrytoBeaDEV/ConexaoAutista-API.git
+cd conexaoautista
+```
+
+### **2. Configure o banco de dados no MySQL:**
+```
+CREATE DATABASE conexaoautista;
+```
+
+### **3. Configure o application.properties:**
+```
+No caminho src/main/resources/application.properties, insira:
+spring.datasource.url=jdbc:mysql://localhost:3306/conexaoautista
+spring.datasource.username=seuUsuario
+spring.datasource.password=suaSenha
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+springdoc.api-docs.path=/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+### **4. Execute o projeto com o maven:**
+```
+./mvnw spring-boot:run
+```
 
 ## 🧪 Testando com Swagger
-Após iniciar o projeto, acesse:
-👉 [`http://localhost:8080/swagger-ui.html`](http://localhost:8080/swagger-ui.html)
+Após o projeto ser iniciado com sucesso, acesse:  
+👉 ['http://localhost:8080/swagger-ui.html']
 
-Você poderá testar os seguintes endpoints disponíveis:
-- `✅ GET /usuarios` → Listar todos os usuários
-- `✅ POST /usuarios` → Cadastrar novo usuário
-- `✅ PUT /usuarios/{id}` → Atualizar usuário existente
-- `✅ DELETE /usuarios/{id}` → Deletar usuário
-- `✅ GET /diarios` → Listar registros de diario
-- `✅ POST /diarios` → Criar novo registro de diario
-- `✅ PUT /diarios/{id}` → Atualizar registro de diario
-- `✅ DELETE /diarios/{id}` → Excluir registro de diario
+Você poderá testar os seguintes endpoints:
+- ✅ GET /usuarios → Listar todos os usuários
+- ✅ POST /usuarios → Cadastrar novo usuário
+- ✅ PUT /usuarios/{id} → Atualizar usuário existente
+- ✅ DELETE /usuarios/{id} → Deletar usuário
+- ✅ GET /diarios → Listar registros de diário
+- ✅ POST /diarios → Criar novo registro de diário
+- ✅ PUT /diarios/{id} → Atualizar registro de diário
+- ✅ DELETE /diarios/{id} → Excluir registro de diário
 
-🧱 Estrutura da API
+## 🧱 Estrutura da API  
 📁 Camadas da aplicação (Padrão MVC)
-- **Controller** – Camada responsável por receber e responder às requisições HTTP.
-- **Service** – Onde ficam as regras de negócio, validações e lógica da aplicação.
-- **Repository** – Responsável por acessar os dados no banco de dados usando JPA.
-- **Model** – Representa as entidades (classes) que serão persistidas.
+- **Controller** – Responsável por lidar com as requisições HTTP.
+- **Service** – Contém a lógica de negócio.
+- **Repository** – Realiza a persistência de dados no banco.
+- **Model** – Representa as entidades (tabelas do banco).
 
-🧑‍💻 Entidades Principais
-- `Usuario`  
-  Campos: `id`, `nome`, `email`, `senha`, `tipo`  
-  Enum: `TipoUsuario { RESPONSAVEL, TERAPEUTA, PROFESSOR }`
-- `DiarioHumor` 
-  Campos: `id`, `data`, `humor`, `observacoes`, `usuario (relacionado)`
+## 🧑‍💻 Entidades Principais  
+🔹 Usuario
+```
+Campos: id, nome, email, senha, tipo
+Enum: TipoUsuario { RESPONSAVEL, SAUDE, EDUCACAO }
+```
+🔹 DiarioHumor
+```
+Campos: id, data, humor, observacoes, usuario (relacionado)
+```
 
-📚 Documentação Técnica
-- ✅ Projeto desenvolvido com arquitetura MVC
+## 👩‍💻 Desenvolvedores  
+| Nome               | RA               |
+|--------------------|------------------|
+| Renata Andrade     | (2920482321037)  |
+| Vitor Rezende      | (2920482321018)  |
+| Priscila Romano    | (292048232)  |
+| Higor Carlos       | (2920482321007)  |
+| Davi Barbosa       | (292048232)  |
+
+## 📚 Documentação Técnica  
+- ✅ Projeto com arquitetura MVC
 - ✅ API RESTful com retorno em JSON
 - ✅ Persistência com JPA e Hibernate
-- ✅ Banco de dados relacional: MySQL
-- ✅ Documentação e testes integrados com Swagger/OpenAPI
-- ✅ Versionamento de código com GitHub
+- ✅ Banco relacional: MySQL
+- ✅ Documentação automática com Swagger/OpenAPI
+- ✅ Versionado com GitHub
 
-👩‍💻 Desenvolvedores
-| Nome               | RA                   |
-|--------------------|----------------------|
-| Renata Andrade     | (RA: 2920482321037)  |
-| Vitor Rezende      | (RA AQUI)  |
-| Priscila Romano    | (RA AQUI)  |
-| Higor Carlos       | (RA AQUI)  |
-| Davi Barbosa       | (RA AQUI)  |
+## 📃 Licença  
+``
+Este projeto está licenciado sob os termos da MIT License. Consulte o arquivo LICENSE para mais informações.
+``
 
-📃 Licença
-Este projeto está licenciado sob os termos da **MIT License** – consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-💙 Por que esse projeto importa?
+## 💙 Por que esse projeto importa?  
 > “A previsibilidade e a rotina são aspectos essenciais para reduzir crises e melhorar o comportamento adaptativo em pessoas com TEA.”  
-> — Temple Grandin
+— Temple Grandin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
